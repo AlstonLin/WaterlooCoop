@@ -1,24 +1,11 @@
-# README
+# Waterloo Coop
+A platform for students at the University of Waterloo to rate and share their experiences during their time working at internships. Build with Ruby on Rails and React.js
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup
+- [Install](http://railsapps.github.io/installrubyonrails-ubuntu.html) Ruby 2.3.0 and Rails 5
+- Install all the dependencies `bundle install`
+- Set up the database `rake db:migrate`
+- Start the server `rails s`
+- Visit localhost:3000 in a browser
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Created by Alston Lin and William Yang
