@@ -1,7 +1,11 @@
 class HomePage extends React.Component {
   render(){
     return (
-      <ButtonRipple text={this.props.text} onClick={function(){ console.log("CLICKED!"); } } />
+        <MainLayout title="Waterloo Coop">
+          <ButtonRipple text={this.props.text} onClick={
+            function(){ console.log("CLICKED!");}
+          } />
+        </MainLayout>
     );
   }
 }

@@ -1,7 +1,9 @@
 class ButtonRipple extends React.Component {
   render(){
     return (
-      <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.props.onClick}>{this.props.text}</button>
+      <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this.props.onClick}>
+        {this.props.text}
+      </button>
     );
   }
 }
