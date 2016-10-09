@@ -8,4 +8,9 @@ A platform for students at the University of Waterloo to rate and share their ex
 - Start the server `rails s`
 - Visit localhost:3000 in a browser
 
+## The Stack
+- Google MDL for Design
+- React.js for Front End
+- Ruby on Rails for Back End
+
 Created by Alston Lin and William Yang
