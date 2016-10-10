@@ -1,7 +1,11 @@
 source 'https://rubygems.org'
 
-# Material UI
-# gem 'browserify-rails'
+# User Auth
+gem 'omniauth-facebook'
+gem 'devise'
+# JS Helpers
+gem 'lodash-rails'
+gem 'js-routes'
 # React
 gem 'react-rails'
 # Base Rails

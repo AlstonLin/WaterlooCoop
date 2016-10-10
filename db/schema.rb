@@ -29,6 +29,11 @@ ActiveRecord::Schema.define(version: 20161008012945) do
   end
 
   create_table "reviews", force: :cascade do |t|
+    t.integer  "difficulty"
+    t.integer  "rating"
+    t.integer  "salary"
+    t.text     "content"
+    t.datetime "startdate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -40,9 +45,22 @@ ActiveRecord::Schema.define(version: 20161008012945) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.boolean  "premium",    default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "premium",             default: false
+    t.string   "name"
+    t.string   "image"
+    t.string   "email",               default: "",    null: false
+    t.string   "encrypted_password",  default: "",    null: false
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",       default: 0,     null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["email"], name: "index_users_on_email"
   end
 
 end

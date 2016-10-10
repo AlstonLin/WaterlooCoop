@@ -1,4 +1,4 @@
 class Skill < ApplicationRecord
-  hasMany :jobs, :class_name => "Job"
-  hasMany :users, :class_name => "User"
+  has_many :jobs, :class_name => "Job"
+  has_many :users, :class_name => "User"
 end

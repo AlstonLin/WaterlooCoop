@@ -7,14 +7,13 @@ class FAB extends React.Component {
       <button
         className={baseClass + colorClass + rippleClass}
         onClick={this.props.onClick} >
-        {this.props.text}
+        {this.props.children}
       </button>
     );
   }
 }
 
 FAB.propTypes = {
-  text: React.PropTypes.string.isRequired,
   accent: React.PropTypes.bool,
   ripple: React.PropTypes.bool,
   onClick: React.PropTypes.func

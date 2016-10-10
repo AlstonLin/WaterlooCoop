@@ -9,7 +9,7 @@ class CheckBox extends React.Component {
   }
   
   render(){
-    var id = "checkbox-" + this.props.key;
+    var id = "checkbox-" + this.props.id;
     return (
       <label className="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect"
         htmlFor={id}>
@@ -27,7 +27,7 @@ class CheckBox extends React.Component {
 }
 
 CheckBox.propTypes = {
-  key: React.PropTypes.string.isRequired,
+  id: React.PropTypes.string.isRequired,
   onCheckedChanged: React.PropTypes.func.isRequired,
   initialChecked: React.PropTypes.bool.isRequired,
   label: React.PropTypes.string.isRequired

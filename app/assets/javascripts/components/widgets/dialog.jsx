@@ -15,23 +15,23 @@ class Dialog extends React.Component {
   
   render(){
     buttons = []
-    if (this.props.positiveText){
-      buttons.push(
-        <button type="button"
-          className="mdl-button"
-          onClick={this.props.positiveAction}
-          key="btnPos">
-          {this.props.positiveText}
-        </button>
-      );
-    }
-    if (this.props.negativeText){
+    if (this.props.rightButtonText){
       buttons.push(
         <button type="button"
           className="mdl-button close"
-          onClick={this.props.negativeAction}
+          onClick={this.props.rightButtonAction}
           key="btnNeg">
-          {this.props.negativeText}
+          {this.props.rightButtonText}
+        </button>
+      );
+    }
+    if (this.props.leftButtonText){
+      buttons.push(
+        <button type="button"
+          className="mdl-button"
+          onClick={this.props.leftButtonAction}
+          key="btnPos">
+          {this.props.leftButtonText}
         </button>
       );
     }
@@ -42,9 +42,7 @@ class Dialog extends React.Component {
           {this.props.title}
         </h4>
         <div className="mdl-dialog__content">
-          <p>
-            {this.props.children}
-          </p>
+          {this.props.children}
         </div>
         <div className="mdl-dialog__actions">
           {buttons}
@@ -56,8 +54,8 @@ class Dialog extends React.Component {
 
 Dialog.propTypes = {
   title: React.PropTypes.string.isRequired,
-  positiveText: React.PropTypes.string,
-  positiveAction: React.PropTypes.func,
-  negativeText: React.PropTypes.string,
-  negativeAction: React.PropTypes.func
+  leftButtonText: React.PropTypes.string,
+  leftButtonAction: React.PropTypes.func,
+  rightButtonText: React.PropTypes.string,
+  rightButtonAction: React.PropTypes.func
 };

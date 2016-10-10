@@ -9,7 +9,7 @@ class TextField extends React.Component {
   }
   
   render(){
-    var id = "textfield-" + this.props.key;
+    var id = "textfield-" + this.props.id;
     return (
       <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <input className="mdl-textfield__input" type="text"
@@ -23,7 +23,7 @@ class TextField extends React.Component {
 }
 
 TextField.propTypes = {
-  key: React.PropTypes.string.isRequired,
+  id: React.PropTypes.string.isRequired,
   onValueChanged: React.PropTypes.func.isRequired,
   label: React.PropTypes.string.isRequired,
   initialValue: React.PropTypes.string

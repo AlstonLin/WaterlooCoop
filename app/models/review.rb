@@ -1,4 +1,4 @@
 class Review < ApplicationRecord
-  hasOne :job, :class_name => "Job"
-  hasOne :author, :class_name => "User"
+  has_one :job, :class_name => "Job"
+  has_one :author, :class_name => "User"
 end
