@@ -14,7 +14,8 @@ class MainLayout extends React.Component {
     };
     var navLinks = [
       <a className="mdl-navigation__link"
-        href={Routes.root_path()}>
+        href={Routes.root_path()}
+        key="home">
           Home
       </a>
     ];
