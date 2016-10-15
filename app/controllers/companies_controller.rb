@@ -10,7 +10,7 @@ class CompaniesController < ApplicationController
         error: @company.errors.full_messages.join(',') 
       }, :status => 500
     else
-      render :json => { companyId: @company.id }
+      render :json => @company
     end
   end
 
