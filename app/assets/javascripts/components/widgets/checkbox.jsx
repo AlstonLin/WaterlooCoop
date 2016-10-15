@@ -4,6 +4,10 @@ class CheckBox extends React.Component {
     this.onChange = this.onChange.bind(this);
   }
   
+  componentDidMount(){
+    componentHandler.upgradeDom();
+  }
+  
   onChange(event){
     this.props.onCheckedChanged(event.target.value);
   }

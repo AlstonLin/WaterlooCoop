@@ -1,4 +1,8 @@
 class Badge extends React.Component {
+  componentDidMount(){
+    componentHandler.upgradeDom();
+  }
+  
   render(){
     return (
       <span className="mdl-badge"

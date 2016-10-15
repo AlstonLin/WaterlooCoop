@@ -1,4 +1,8 @@
 class FAB extends React.Component {
+  componentDidMount(){
+    componentHandler.upgradeDom();
+  }
+  
   render(){
     baseClass = "mdl-button mdl-js-button mdl-button--fab ";
     colorClass = this.props.accent ? "mdl-button--accent " : "";

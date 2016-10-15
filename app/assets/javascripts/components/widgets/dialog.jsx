@@ -5,6 +5,10 @@ class Dialog extends React.Component {
     this.hide = this.hide.bind(this);
   }
 
+  componentDidMount(){
+    componentHandler.upgradeDom();
+  }
+  
   show(){
     this.refs.dialog.showModal();
   }

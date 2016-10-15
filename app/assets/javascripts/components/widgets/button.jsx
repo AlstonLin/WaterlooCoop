@@ -1,4 +1,8 @@
 class Button extends React.Component {
+  componentDidMount(){
+    componentHandler.upgradeDom();
+  }
+  
   render(){
     baseClass = "mdl-button mdl-js-button mdl-button--raised ";
     colorClass = this.props.accent ? "mdl-button--accent " : "mdl-button--colored ";

@@ -1,4 +1,8 @@
 class ToolTip extends React.Component {
+  componentDidMount(){
+    componentHandler.upgradeDom();
+  }
+  
   render(){
     var divId = _.uniqueId("tooltip-content");
     var baseClass = "mdl-tooltip ";

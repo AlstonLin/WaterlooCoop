@@ -58,7 +58,7 @@ class NewReviewPage extends React.Component {
                   onClick={pt >= 0 ?
                     () => {
                       this.setState({
-                        part: 0
+                        part: i
                       });
                     }
                     : null}

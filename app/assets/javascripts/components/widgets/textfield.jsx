@@ -4,6 +4,10 @@ class TextField extends React.Component {
     this.onChange = this.onChange.bind(this);
   }
   
+  componentDidMount(){
+    componentHandler.upgradeDom();
+  }
+  
   onChange(event){
     this.props.onValueChanged(event.target.value);
   }
