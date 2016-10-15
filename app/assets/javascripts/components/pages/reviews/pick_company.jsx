@@ -5,6 +5,27 @@ class NewReviewPickCompany extends React.Component {
   }
 
   addCompany(){
+    var payload = {
+      company: {
+        name: this.refs.nameField.getValue(),
+        description: this.refs.descriptionField.getValue(),
+        url: this.refs.urlField.getValue(),
+        location: this.refs.locationField.getValue()
+      }
+    };
+    $.ajax({
+      type: "POST",
+      url: Routes.companies_path(),
+      data: payload,
+      dataType: "text json",
+      success: (data) => {
+        this.refs.dialog.hide();
+        this.refs.company.setValue(data.name);
+      },
+      error: (err) => {
+        console.log("ERROR: " + JSON.stringify(err));
+      }
+    });
   }
 
   render(){
@@ -12,12 +33,8 @@ class NewReviewPickCompany extends React.Component {
       <div>  
         <h6>Pick the Company of the Job you're reviewing</h6>
         <TextField id="company"
-          label="Company" 
-          onValueChanged={
-            (val) => {
-              console.log(val);
-            }
-          } />
+          label="Company"
+          ref="company"/>
         <br/>
         <Button onClick={
             () => {
@@ -41,8 +58,22 @@ class NewReviewPickCompany extends React.Component {
           leftButtonAction={
             () => {
               this.refs.dialog.hide();
+              this.addCompany();
             }
-          } />
+          } >
+          <TextField id="name"
+            label="Name"
+            ref="nameField"/>
+          <TextField id="description"
+            label="Description"
+            ref="descriptionField"/>
+          <TextField id="url"
+            label="Company Website URL"
+            ref="urlField"/>
+          <TextField id="location"
+            label="Location"
+            ref="locationField"/>
+        </Dialog>
       </div>
     );
   }
