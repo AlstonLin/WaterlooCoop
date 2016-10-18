@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+# Search
+gem 'searchkick'
 # User Auth
 gem 'omniauth-facebook'
 gem 'devise'

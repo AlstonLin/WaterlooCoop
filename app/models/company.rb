@@ -3,4 +3,5 @@ class Company < ApplicationRecord
   validates :name, :presence => true, :uniqueness => true
   validates :description, :presence => true
   validates :location, :presence => true
+  searchkick
 end

@@ -20,7 +20,7 @@ class NewReviewPickCompany extends React.Component {
       dataType: "text json",
       success: (data) => {
         this.refs.dialog.hide();
-        this.refs.company.setValue(data.name);
+        this.refs.company.setValue(data);
       },
       error: (err) => {
         console.log("ERROR: " + JSON.stringify(err));
@@ -32,9 +32,11 @@ class NewReviewPickCompany extends React.Component {
     return (
       <div>  
         <h6>Pick the Company of the Job you're reviewing</h6>
-        <TextField id="company"
+        <AutoCompleteTextField id="company"
           label="Company"
-          ref="company"/>
+          ref="company"
+          sourcePath={Routes.autocomplete_companies_path()}
+          displayKey="name"/>
         <br/>
         <Button onClick={
             () => {
@@ -45,7 +47,8 @@ class NewReviewPickCompany extends React.Component {
         </Button>
         <Button onClick={
             () => {
-              this.props.onPick(1);
+              var val = this.refs.company.getValue();
+              this.props.onPick(val.id);
             }
           }>
           Next
