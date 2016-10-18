@@ -14,6 +14,17 @@ class CompaniesController < ApplicationController
     end
   end
 
+  def autocomplete
+    results = Company.search(params[:query], :limit => 10)
+    results = results.map do |company|
+      {
+        name: company.name,
+        id: company.id
+      }
+    end
+    render :json => results
+  end
+
   private
     def company_params
       params.require(:company).permit(:name, :description, :url, :location)
