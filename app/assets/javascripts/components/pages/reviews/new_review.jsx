@@ -41,7 +41,9 @@ class NewReviewPage extends React.Component {
     } else {
       return (
         <NewReviewWrite
-          onPick={
+          company={this.state.company}
+          job={this.state.job}
+          onSubmitted={
             (val) => {
               window.location.href = Routes.root_path;
             }

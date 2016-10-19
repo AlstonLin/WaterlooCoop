@@ -7,7 +7,7 @@ class CreateReviews < ActiveRecord::Migration[5.0]
       t.integer :rating
       t.integer :salary
       t.text :content
-      t.datetime :startdate
+      t.integer :year
       t.timestamps
     end
   end
