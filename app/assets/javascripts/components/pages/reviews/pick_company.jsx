@@ -36,7 +36,9 @@ class NewReviewPickCompany extends React.Component {
           label="Company"
           ref="company"
           sourcePath={Routes.autocomplete_companies_path()}
-          displayKey="name"/>
+          displayKey="name"
+          prefetch={false}
+          initialValue={this.props.initialValue}/>
         <br/>
         <Button onClick={
             () => {
@@ -48,7 +50,9 @@ class NewReviewPickCompany extends React.Component {
         <Button onClick={
             () => {
               var val = this.refs.company.getValue();
-              this.props.onPick(val.id);
+              if (val){
+                this.props.onPick(val);
+              }
             }
           }>
           Next
@@ -61,7 +65,6 @@ class NewReviewPickCompany extends React.Component {
           leftButtonAction={
             () => {
               this.refs.dialog.hide();
-              this.addCompany();
             }
           } >
           <TextField id="name"
@@ -83,5 +86,6 @@ class NewReviewPickCompany extends React.Component {
 }
 
 NewReviewPickCompany.propTypes = {
-  onPick: React.PropTypes.func.isRequired
+  onPick: React.PropTypes.func.isRequired,
+  initialValue: React.PropTypes.object
 }
