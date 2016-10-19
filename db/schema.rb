@@ -22,13 +22,17 @@ ActiveRecord::Schema.define(version: 20161008012945) do
   end
 
   create_table "jobs", force: :cascade do |t|
+    t.integer  "company_id"
     t.string   "title"
-    t.string   "type"
+    t.string   "industry"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_jobs_on_company_id"
   end
 
   create_table "reviews", force: :cascade do |t|
+    t.integer  "job_id"
+    t.integer  "author_id"
     t.integer  "difficulty"
     t.integer  "rating"
     t.integer  "salary"
@@ -36,6 +40,8 @@ ActiveRecord::Schema.define(version: 20161008012945) do
     t.datetime "startdate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_reviews_on_author_id"
+    t.index ["job_id"], name: "index_reviews_on_job_id"
   end
 
   create_table "skills", force: :cascade do |t|

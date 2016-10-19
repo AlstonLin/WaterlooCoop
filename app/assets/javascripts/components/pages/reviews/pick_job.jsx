@@ -1,16 +1,85 @@
 class NewReviewPickJob extends React.Component {
+  constructor(props){
+    super(props);
+    this.addJob = this.addJob.bind(this)
+  }
+
+  addJob(){
+    var payload = {
+      job: {
+        title: this.refs.titleField.getValue(),
+        industry: this.refs.typeField.getValue(),
+        company_id: this.props.companyId
+      }
+    };
+    $.ajax({
+      type: "POST",
+      url: Routes.jobs_path(),
+      data: payload,
+      dataType: "text json",
+      success: (data) => {
+        this.refs.dialog.hide();
+        this.refs.job.setValue(data);
+      },
+      error: (err) => {
+        console.log("ERROR: " + JSON.stringify(err));
+      }
+    });
+  }
+
   render(){
     return (
-      <div>
+      <div>  
         <h6>Pick the Job that you're reviewing</h6>
+        <AutoCompleteTextField id="job"
+          label="Job"
+          ref="job"
+          sourcePath={Routes.company_jobs_path({id: this.props.companyId})}
+          displayKey="title"
+          prefetch={true}
+          initialValue={this.props.initialValue}/>
+        <br/>
         <Button onClick={
             () => {
-              this.props.onPick(1)
+              this.refs.dialog.show();
+            }
+          }>
+          Add Job
+        </Button>
+        <Button onClick={
+            () => {
+              var val = this.refs.job.getValue();
+              if (val){
+                this.props.onPick(val);
+              }
             }
           }>
           Next
         </Button>
+        <Dialog title="Add Job"
+          ref="dialog"
+          rightButtonText="Add"
+          rightButtonAction={this.addJob}
+          leftButtonText="Cancel"
+          leftButtonAction={
+            () => {
+              this.refs.dialog.hide();
+            }
+          } >
+          <TextField id="title"
+            label="Job Title"
+            ref="titleField"/>
+          <TextField id="type"
+            label="Type (this should be a dropdown!)"
+            ref="typeField"/>
+        </Dialog>
       </div>
     );
   }
 }
+
+NewReviewPickJob.propTypes = {
+  onPick: React.PropTypes.func.isRequired,
+  companyId: React.PropTypes.number.isRequired,
+  initialValue: React.PropTypes.object
+};

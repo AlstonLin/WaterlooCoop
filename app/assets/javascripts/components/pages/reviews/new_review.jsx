@@ -3,7 +3,9 @@ class NewReviewPage extends React.Component {
     super(props);
     // 1: Pick a Company, 2: Pick a Job, 3: Write the Review
     this.state = {
-      part: 0
+      part: 0,
+      company: null,
+      job: null
     };
     this.renderPart.bind(this);
   }
@@ -11,25 +13,30 @@ class NewReviewPage extends React.Component {
   renderPart(){
     if (this.state.part == 0) {
       return (
-          <NewReviewPickCompany
-            onPick={
-              (val) => {
-                this.setState({
-                  part: 1
-                });
-              }
-            }/>
+        <NewReviewPickCompany
+          onPick={
+            (val) => {
+              this.setState({
+                part: 1,
+                company: val
+              });
+            }
+            }
+          initialValue={this.state.company}/>
       );
     } else if (this.state.part == 1) {
       return (
         <NewReviewPickJob
-            onPick={
-              (val) => {
-                this.setState({
-                  part: 2
-                });
-              }
-            }/>
+          companyId={this.state.company.id}          
+          onPick={
+            (val) => {
+              this.setState({
+                part: 2,
+                job: val
+              });
+            }
+          }
+          initialValue={this.state.job}/>
       );
     } else {
       return (
@@ -55,7 +62,7 @@ class NewReviewPage extends React.Component {
               return (
                 <a className={this.state.part < i ? "disabled" :
                   (this.state.part == i ? "active" : "")}
-                  onClick={pt >= 0 ?
+                  onClick={pt >= i ?
                     () => {
                       this.setState({
                         part: i

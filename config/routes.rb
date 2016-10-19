@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get "home" => "home#main"
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :companies, :only => [:show, :create] do
+    get :jobs
     collection do
       get :autocomplete
     end

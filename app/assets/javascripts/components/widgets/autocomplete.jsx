@@ -2,22 +2,35 @@ class AutoCompleteTextField extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      value: null
+      value: props.initialValue
     };
     this.onChange = this.onChange.bind(this);
     this.getValue = this.getValue.bind(this);
+    this.setValue = this.setValue.bind(this);
+    // If there's an initial value
+    if (props.initialValue){
+      $(this.refs.wrapper).addClass("is-dirty");
+    }
   }
   
   componentDidMount(){
+    componentHandler.upgradeDom();
     // Defines the source for typeahead
-    var source = new Bloodhound({
+    var sourceJSON = {
       datumTokenizer: Bloodhound.tokenizers.whitespace,
       queryTokenizer: Bloodhound.tokenizers.whitespace,
-      remote: {
+    };
+    // No queries if it's prefetched
+    if (this.props.prefetch){
+      sourceJSON.remote = {
+        url: this.props.sourcePath,
+      };
+    } else {
+      sourceJSON.remote = {
         url: this.props.sourcePath + "?query=%QUERY",
         wildcard: "%QUERY"
-      }
-    });
+      };
+    }
     // Sets the typeahead
     $(this.refs.input).typeahead({
       hint: true,
@@ -25,7 +38,7 @@ class AutoCompleteTextField extends React.Component {
       minLength: 2
     }, {
       name: 'source',
-      source: source,
+      source: new Bloodhound(sourceJSON),
       displayKey: this.props.displayKey
     });
     // Value listener
@@ -34,10 +47,14 @@ class AutoCompleteTextField extends React.Component {
         value: data
       });
     });
-    componentHandler.upgradeDom();
   }
-  
+
   onChange(event){
+    if (this.state.value){
+      this.setState({
+        value: null
+      });
+    }
     if (this.props.onValueChanged){
       this.props.onValueChanged(event.target.value);
     }
@@ -49,7 +66,6 @@ class AutoCompleteTextField extends React.Component {
 
   setValue(val){
     $(this.refs.input).val(val[this.props.displayKey]);
-    componentHandler.upgradeDom();
     this.setState({
       value: val
     });
@@ -64,7 +80,8 @@ class AutoCompleteTextField extends React.Component {
         <input className="mdl-textfield__input" type="text"
           id={id}
           ref="input"
-          defaultValue={this.props.initialValue}
+          defaultValue={this.props.initialValue ?
+            this.props.initialValue[this.props.displayKey] : null}
           onChange={this.onChange}/>
         <label className="mdl-textfield__label" htmlFor={id}>{this.props.label}</label>
       </div>
@@ -77,6 +94,7 @@ AutoCompleteTextField.propTypes = {
   onValueChanged: React.PropTypes.func,
   label: React.PropTypes.string.isRequired,
   sourcePath: React.PropTypes.string.isRequired,
+  prefetch: React.PropTypes.bool.isRequired,
   displayKey: React.PropTypes.string.isRequired,
-  initialValue: React.PropTypes.string
+  initialValue: React.PropTypes.object
 };
