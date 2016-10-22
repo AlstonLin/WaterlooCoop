@@ -5,13 +5,17 @@ class NewReviewPickJob extends React.Component {
   }
 
   addJob(){
-    var payload = {
-      job: {
-        title: this.refs.titleField.getValue(),
-        industry: this.refs.typeField.getValue(),
-        company_id: this.props.companyId
-      }
-    };
+    try {
+      var payload = {
+        job: {
+          title: this.refs.titleField.getValue(),
+          industry: this.refs.typeField.getValue(),
+          company_id: this.props.companyId
+        }
+      };
+    } catch (ignored){
+      return;
+    }
     $.ajax({
       type: "POST",
       url: Routes.jobs_path(),
@@ -69,9 +73,11 @@ class NewReviewPickJob extends React.Component {
           <TextField id="title"
             label="Job Title"
             ref="titleField"/>
-          <TextField id="type"
-            label="Type (this should be a dropdown!)"
-            ref="typeField"/>
+          <SelectField id="type"
+            label="Type"
+            options={["Software", "Hardware", "Business"]}
+            ref="typeField"
+            required/>
         </Dialog>
       </div>
     );

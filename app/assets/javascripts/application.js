@@ -12,11 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree ../../../vendor/assets/javascripts/.
 //= require lodash
 //= require js-routes
 //= require turbolinks
 //= require react
 //= require react_ujs
+//= require_tree ../../../vendor/assets/javascripts/.
 //= require components
 //= require_tree .

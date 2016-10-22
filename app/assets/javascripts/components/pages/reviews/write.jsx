@@ -49,7 +49,7 @@ class NewReviewWrite extends React.Component {
           label="What year did you have this job"
           ref="yearField"/> 
         <br/>
-        <TextField id="content"
+        <TextArea id="content"
           label="Description"
           ref="contentField"/>
         <br/>
