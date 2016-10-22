@@ -21,7 +21,7 @@ class TextField extends React.Component {
 
   setValue(val){
     this.refs.input.value = val;
-    componentHandler.upgradeDom();
+    $(this.refs.wrapper).addClass("is-dirty");
   }
   
   render(){

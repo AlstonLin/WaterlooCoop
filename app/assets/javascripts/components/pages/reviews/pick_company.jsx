@@ -70,7 +70,7 @@ class NewReviewPickCompany extends React.Component {
           <TextField id="name"
             label="Name"
             ref="nameField"/>
-          <TextField id="description"
+          <TextArea id="description"
             label="Description"
             ref="descriptionField"/>
           <TextField id="url"
