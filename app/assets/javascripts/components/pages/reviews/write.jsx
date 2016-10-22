@@ -5,16 +5,21 @@ class NewReviewWrite extends React.Component {
   }
 
   submitReview(){
-    var payload = {
-      review: {
-        job_id: this.props.job.id,
-        difficulty: this.refs.difficultyField.getValue(),
-        rating: this.refs.ratingField.getValue(),
-        salary: this.refs.salaryField.getValue(),
-        content: this.refs.contentField.getValue(),
-        year: this.refs.yearField.getValue()
-      }
-    };
+    try {
+      var payload = {
+        review: {
+          job_id: this.props.job.id,
+          rating: this.refs.ratingField.getValue(),
+          difficulty: this.refs.difficultyField.getValue(),
+          term: this.refs.termField.getValue(),
+          salary: this.refs.salaryField.getValue(),
+          content: this.refs.contentField.getValue(),
+          year: this.refs.yearField.getValue()
+        }
+      };
+    } catch (err){
+      return;
+    }
     $.ajax({
       type: "POST",
       url: Routes.reviews_path(),
@@ -33,13 +38,23 @@ class NewReviewWrite extends React.Component {
     return (
       <div>
         <h6>Write Your Review</h6>
-        <NumberField id="difficulty" 
-          label="Difficulty to get the job"
+        <NumSelectField id="difficulty" 
+          label="Interview Difficulty"
+          options={[1, 2, 3, 4]}
+          required
           ref="difficultyField"/>
         <br/>
-        <NumberField id="rating"
-          label="Rate the job overall"
+        <NumSelectField id="rating"
+          label="Job Rating"
+          options={[1, 2, 3, 4]}
+          required
           ref="ratingField"/> 
+        <br/>
+        <SelectField id="term"
+          label="School Term"
+          options={["1A", "1B", "2A", "2B", "3A", "3B", "4A", "4B", "4B+"]}
+          ref="termField"
+          required/>
         <br/>
         <NumberField id="salary"
           label="Weekly total compensation ($)"

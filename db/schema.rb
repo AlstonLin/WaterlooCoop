@@ -36,8 +36,10 @@ ActiveRecord::Schema.define(version: 20161008012945) do
     t.integer  "difficulty"
     t.integer  "rating"
     t.integer  "salary"
+    t.integer  "stipends"
     t.text     "content"
     t.integer  "year"
+    t.string   "term"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_reviews_on_author_id"
