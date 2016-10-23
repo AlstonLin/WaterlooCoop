@@ -2,7 +2,8 @@ class AutoCompleteTextField extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      value: props.initialValue
+      value: props.initialValue,
+      source: null
     };
     this.onChange = this.onChange.bind(this);
     this.getValue = this.getValue.bind(this);
@@ -12,7 +13,7 @@ class AutoCompleteTextField extends React.Component {
       $(this.refs.wrapper).addClass("is-dirty");
     }
   }
-  
+
   componentDidMount(){
     componentHandler.upgradeDom();
     // Defines the source for typeahead
@@ -21,24 +22,19 @@ class AutoCompleteTextField extends React.Component {
       queryTokenizer: Bloodhound.tokenizers.whitespace,
     };
     // No queries if it's prefetched
-    if (this.props.prefetch){
-      sourceJSON.remote = {
-        url: this.props.sourcePath,
-      };
-    } else {
-      sourceJSON.remote = {
-        url: this.props.sourcePath + "?query=%QUERY",
-        wildcard: "%QUERY"
-      };
-    }
+    sourceJSON.remote = {
+      url: this.props.sourcePath + "?query=%QUERY",
+      wildcard: "%QUERY"
+    };
     // Sets the typeahead
+    var source = new Bloodhound(sourceJSON);
     $(this.refs.input).typeahead({
       hint: true,
       highlight: true,
       minLength: 2
     }, {
       name: 'source',
-      source: new Bloodhound(sourceJSON),
+      source: source,
       displayKey: this.props.displayKey
     });
     // Value listener
@@ -46,6 +42,9 @@ class AutoCompleteTextField extends React.Component {
       this.setState({
         value: data
       });
+    });
+    this.setState({
+      source: source
     });
   }
 
@@ -65,6 +64,7 @@ class AutoCompleteTextField extends React.Component {
   }
 
   setValue(val){
+    this.state.source.clearPrefetchCache();
     $(this.refs.input).val(val[this.props.displayKey]);
     this.setState({
       value: val
@@ -94,7 +94,6 @@ AutoCompleteTextField.propTypes = {
   onValueChanged: React.PropTypes.func,
   label: React.PropTypes.string.isRequired,
   sourcePath: React.PropTypes.string.isRequired,
-  prefetch: React.PropTypes.bool.isRequired,
   displayKey: React.PropTypes.string.isRequired,
   initialValue: React.PropTypes.object
 };
