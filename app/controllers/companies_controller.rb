@@ -16,7 +16,9 @@ class CompaniesController < ApplicationController
   
   def jobs
     @company = Company.find(params[:company_id])
-    render :json => @company.jobs
+    @jobs = Job.search(params[:query], :limit =>10, :fields => [:title],
+                       :where => { :company_id => @company.id })
+    render :json => @jobs
   end
 
   def autocomplete

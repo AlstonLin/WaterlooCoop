@@ -40,7 +40,6 @@ class NewReviewPickJob extends React.Component {
           ref="job"
           sourcePath={Routes.company_jobs_path({id: this.props.companyId})}
           displayKey="title"
-          prefetch={true}
           initialValue={this.props.initialValue}/>
         <br/>
         <Button onClick={

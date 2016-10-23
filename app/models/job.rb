@@ -4,4 +4,5 @@ class Job < ApplicationRecord
   belongs_to :company, :class_name => "Company"
   validates :title, :presence => true
   validates :industry, :presence => true
+  searchkick
 end

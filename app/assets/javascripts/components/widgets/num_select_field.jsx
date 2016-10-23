@@ -2,7 +2,7 @@ class NumSelectField extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      selected: null,
+      selected: props.initialValue,
       invalid: false
     };
     this.getValue = this.getValue.bind(this);

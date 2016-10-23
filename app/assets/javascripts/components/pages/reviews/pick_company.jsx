@@ -37,7 +37,6 @@ class NewReviewPickCompany extends React.Component {
           ref="company"
           sourcePath={Routes.autocomplete_companies_path()}
           displayKey="name"
-          prefetch={false}
           initialValue={this.props.initialValue}/>
         <br/>
         <Button onClick={
