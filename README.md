@@ -6,6 +6,7 @@ A platform for students at the University of Waterloo to rate and share their ex
 - [Install ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/setup.html)
 - Install all the dependencies `bundle install`
 - Set up the database `rake db:migrate`
+- Setup Dalli cache server `rails c` -> `Dalli::Client.new` -> CTRL + D
 - Start the server `rails s`
 - Visit localhost:3000 in a browser
 
