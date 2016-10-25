@@ -1,5 +1,10 @@
 source 'https://rubygems.org'
 
+# Caching
+gem 'dalli'
+gem 'memcached'
+gem 'identity_cache'
+gem 'cityhash'
 # Search
 gem 'searchkick'
 # User Auth

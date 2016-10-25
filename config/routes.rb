@@ -1,6 +1,6 @@
 Rails.application.routes.draw do 
-  root :to => "home#main"
-  get "home" => "home#main"
+  root :to => "jobs#index"
+  get "home" => "jobs#index"
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :companies, :only => [:show, :create] do
     get :jobs
@@ -9,5 +9,5 @@ Rails.application.routes.draw do
     end
   end
   resources :reviews, :only => [:new, :create, :show]
-  resources :jobs, :only => [:show, :create]
+  resources :jobs, :only => [:show, :create, :index]
 end
