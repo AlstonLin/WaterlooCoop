@@ -86,9 +86,4 @@ Rails.application.configure do
 
   config.react.variant = :production
   config.react.addons = true
-  
-  # Caching
-  config.action_controller.perform_caching = true
-  config.cache_store = :dalli_store
-  config.identity_cache_store = :dalli_store, "localhost:11211"
 end

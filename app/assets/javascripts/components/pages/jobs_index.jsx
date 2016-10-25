@@ -1,7 +1,6 @@
 class JobsIndexPage extends React.Component {
   render(){
     var items = [];
-    console.log(JSON.stringify(this.props.jobs));
     for (let idx in this.props.jobs){
       let job = this.props.jobs[idx];
       items.push({
