@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+# Testing
+gem 'rspec-rails'
 # Search
 gem 'searchkick'
 # User Auth
