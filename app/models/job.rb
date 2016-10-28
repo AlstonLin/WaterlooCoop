@@ -6,6 +6,16 @@ class Job < ApplicationRecord
   # Validations
   validates :title, :presence => true
   validates :industry, :presence => true
+  validates :company, :presence => true
+  validate :unique_title_in_company
   # Search
   searchkick
+
+  # Custom Validations
+  private
+  def unique_title_in_company
+    if self.class.exists?(:company_id => company_id, :title => title)
+      errors.add :title, "has already been taken"
+    end
+  end
 end
