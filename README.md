@@ -15,5 +15,9 @@ A platform for students at the University of Waterloo to rate and share their ex
 - Google MDL for Design
 - React.js for Front End
 - Ruby on Rails for Back End
+- RSpec for testing
+
+##### Testing
+Run `rake spec`
 
 Created by Alston Lin and William Yang
