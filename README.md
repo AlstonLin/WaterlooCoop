@@ -17,7 +17,7 @@ A platform for students at the University of Waterloo to rate and share their ex
 - Ruby on Rails for Back End
 - RSpec for testing
 
-##### Testing
+## Testing
 Run `rake spec`
 
 Created by Alston Lin and William Yang
