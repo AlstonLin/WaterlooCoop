@@ -1,23 +1,5 @@
 class JobsIndexPage extends React.Component {
   render(){
-    var items = [];
-    for (let idx in this.props.jobs){
-      let job = this.props.jobs[idx];
-      items.push({
-        title: job.company.name,
-        primary: (
-          <p>{job.title}</p>
-        ),
-        secondary: (
-          <div>
-            <i className="material-icons">star</i>
-            <i className="material-icons">star</i>
-            <i className="material-icons">star</i>
-          </div>
-        )
-      });
-    }
-    
     return (
       <MainLayout title="Waterloo Coop"
         currentUser={this.props.currentUser}>
@@ -36,7 +18,29 @@ class JobsIndexPage extends React.Component {
           </TextCenter>
         </PaddedRow>
         <PaddedRow>
-          <List items={items}/>
+          <List>
+            {
+              _.map(this.props.jobs, (job, idx) => {
+                return (
+                  <a key={idx}
+                    href={Routes.job_path(job.id)}>
+                    <ListItem>
+                      <ListPrimary title={job.company.name}>
+                        {job.title}
+                      </ListPrimary>
+                      <ListSecondary>
+                        <div>
+                          <i className="material-icons">star</i>
+                          <i className="material-icons">star</i>
+                          <i className="material-icons">star</i>
+                        </div>
+                      </ListSecondary>
+                    </ListItem>
+                  </a>
+                );
+              })
+            }
+          </List>
         </PaddedRow>
       </MainLayout>
     );

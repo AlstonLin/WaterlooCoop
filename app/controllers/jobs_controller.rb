@@ -9,8 +9,17 @@ class JobsController < ApplicationController
   end
 
   def show
-    @job = Job.find(params[:id])
-    render :json => @job
+    model = Job.preload(:company, :reviews).find(params[:id])
+    @job = model.as_json
+    @job[:company] = model.company.as_json
+    @job[:reviews] = []
+    model.reviews.each do |review|
+      @job[:reviews] << review.as_json
+    end
+    respond_to do |format|
+      format.html
+      format.json { render :json => @job }
+    end
   end
 
   def create
