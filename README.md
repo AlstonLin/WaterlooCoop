@@ -4,10 +4,8 @@ A platform for students at the University of Waterloo to rate and share their ex
 ## Setup
 - [Install](http://railsapps.github.io/installrubyonrails-ubuntu.html) Ruby 2.3.0 and Rails 5
 - [Install ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/setup.html)
-- Install memcached (Ubuntu: `sudo apt-get install memcached`)
 - Install all the dependencies `bundle install`
 - Set up the database `rake db:migrate`
-- Setup Dalli cache server `rails c` -> `Dalli::Client.new` -> CTRL + D
 - Start the server `rails s`
 - Visit localhost:3000 in a browser
 
