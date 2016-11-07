@@ -1,4 +1,7 @@
 # Waterloo Coop
+
+##### This project has been abandoned due to competing websites
+
 A platform for students at the University of Waterloo to rate and share their experiences during their time working at internships. Build with Ruby on Rails and React.js
 
 ## Setup
